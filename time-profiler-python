@@ -1,0 +1,74 @@
+"""
+Authors: Diya Khanna 
+Date: 2022-09-26
+"""
+
+def inputFloat(question):
+    '''asks for an input and converts it into a floating point number. ''' 
+    a=input(question) 
+    return float(a)
+
+def formatHours(hours,label):
+    ''' returns a string containing the number rounded to two decimal places, plus the label, separated by a single space.'''
+    return str(round(hours,2))+' '+label
+
+def indentMessage(message,length):
+    ''' adds spaces to the left-hand side of the message it is given, returning a new message whose length (including spaces) is equal to the target length.'''
+    b=length-len(message)
+    return (' '*b+message)
+
+def createBar(letter,length):
+    ''' takes two parameters: a letter to repeat and a length value (as a floating-point number). It must round off the length value and then return a string consisting of that many copies of the letter it was given.'''
+    c=round(length)
+    return(c*letter)
+
+def timeProfile():
+    '''It must read inputs from the user and then print out a time profile showing how many hours per week are spent on various tasks, with bars of repeated letters allowing a visual comparison of these values.'''
+    name=input('What is your name? ')
+    work=inputFloat('How many hours do you work each week? ')
+    sleep=inputFloat('How many hours per day do you sleep on average? ')
+    classes=inputFloat('How many classes are you taking this semester? ')
+    classtime=inputFloat ('For one class, what is the average time spent in the classroom per week? ')
+    everythingelse=input("What shall we call the 'everything else' category? ")
+    other=inputFloat("How many hours per week do you spend on '" + everythingelse + "'? ")
+    
+    workhrs=work
+    sleephrs=sleep*7
+    classhrs=classes*3*classtime
+    otherhrs=other
+    freetime=168-(workhrs+sleephrs+classhrs+otherhrs)
+    
+    workString=formatHours(workhrs,'work hours')
+    sleepString=formatHours(sleephrs,'sleep hours')
+    classString=formatHours(classhrs,'class hours')
+    organisingString=formatHours(otherhrs,everythingelse+' hours')
+    freeString=formatHours(freetime,'free hours')
+    
+    d=len(workString)
+    e=len(sleepString)
+    f=len(classString)
+    g=len(organisingString)
+    h=len(freeString)
+    
+    i=max(d,e,f,g,h)
+    
+    workIndent=indentMessage(workString, i )
+    sleepIndent=indentMessage(sleepString,i )
+    classIndent=indentMessage(classString, i)
+    organizingIndent=indentMessage(organisingString,i )
+    freeIndent=indentMessage(freeString,i)
+    
+    j=createBar('W',workhrs)
+    k=createBar('S',sleephrs)
+    l=createBar('C',classhrs)
+    m=createBar('E',otherhrs)
+    n=createBar('F',freetime)
+    
+    print ('Weekly time profile for ' + name + ':')
+    print(workIndent + ':' +' '+j)
+    print(sleepIndent + ':' +' '+k)
+    print(classIndent + ':' +' '+l)
+    print(organizingIndent + ':' +' '+m)
+    print(freeIndent + ':' +' '+n)
+    
+    
