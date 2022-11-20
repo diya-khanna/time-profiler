@@ -1,6 +1,5 @@
 """
 Authors: Diya Khanna 
-Date: 2022-09-26
 """
 
 def inputFloat(question):
